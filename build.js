@@ -491,8 +491,8 @@ function renderFooter(content) {
       <div>
         <div class="footer-logo">${esc(content.brand.logoText || content.brand.name)}</div>
         <ul class="plain">
-          <li><a href="mailto:${esc(content.brand.email)}">${esc(content.brand.email)}</a></li>
-          <li><a href="${telHref(content.brand.phone)}">${esc(content.brand.phone)}</a></li>
+          ${content.brand.email ? `<li><a href="mailto:${esc(content.brand.email)}">${esc(content.brand.email)}</a></li>` : ""}
+          ${content.brand.phone ? `<li><a href="${telHref(content.brand.phone)}">${esc(content.brand.phone)}</a></li>` : ""}
         </ul>
       </div>
       <div>
