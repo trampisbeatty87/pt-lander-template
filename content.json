@@ -145,8 +145,9 @@
         {
           "type": "embed",
           "id": "book",
+          "modal": true,
           "headline": "Claim your $97 evaluation",
-          "intro": "Fill out the form and we'll be in touch to lock in your 90-minute assessment. Every CTA on this page scrolls here.",
+          "intro": "Fill out the form and we'll be in touch to lock in your 90-minute assessment.",
           "html": ""
         }
       ]
