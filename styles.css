@@ -64,7 +64,8 @@ img { max-width: 100%; display: block; }
 }
 .header-inner { display: flex; align-items: center; gap: 1.5rem; padding: .9rem 0; }
 .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: .04em; color: var(--ink); display: inline-flex; align-items: center; }
-.logo-img { height: 34px; width: auto; display: block; }
+.logo-img { height: 56px; width: auto; max-width: 240px; display: block; }
+@media (max-width: 640px) { .logo-img { height: 44px; max-width: 170px; } }
 .nav { display: flex; gap: 1.5rem; margin-left: auto; }
 .nav a { font-weight: 600; color: var(--ink); font-size: .95rem; }
 .nav a:hover { color: var(--primary); }
