@@ -575,12 +575,14 @@ function main() {
   fs.mkdirSync(DIST, { recursive: true });
 
   let count = 0;
+  let indexHtml = null;
 
   // Pages
   const pages = content.pages || {};
   for (const slug of Object.keys(pages)) {
     const html = renderPage(content, slug, pages[slug]);
     fs.writeFileSync(path.join(DIST, `${slug}.html`), html);
+    if (slug === "index") indexHtml = html;
     count++;
   }
 
@@ -592,7 +594,19 @@ function main() {
   }
 
   // CSS
-  fs.copyFileSync(path.join(ROOT, "styles.css"), path.join(DIST, "styles.css"));
+  const css = read("styles.css");
+  fs.writeFileSync(path.join(DIST, "styles.css"), css);
+
+  // Self-contained export for pasting into HubSpot (coded template) or GHL
+  // (custom code): same page with styles.css inlined. Images stay as their
+  // absolute source URLs, so the single file is portable.
+  if (indexHtml) {
+    const exportHtml = indexHtml.replace(
+      '<link rel="stylesheet" href="styles.css" />',
+      `<style>\n${css}\n</style>`
+    );
+    fs.writeFileSync(path.join(DIST, "export.html"), exportHtml);
+  }
 
   // Assets
   const assetsSrc = path.join(ROOT, "assets");
